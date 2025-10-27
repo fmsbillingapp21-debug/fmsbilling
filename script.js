@@ -1,7 +1,7 @@
 // Combined array: normal items + items with variants
 const allItems = [
   { 
-    name: "ടേബിൾ സെറ്റ്",  // Item with variants
+    name: "ടേബിൾ സെറ്റ്",
     variants: [
       { name: "ടേബിൾ സെറ്റ് (08)", price: 350 },
       { name: "ടേബിൾ സെറ്റ് (10)", price: 400 }
@@ -10,7 +10,7 @@ const allItems = [
   { name: "ചെയർ സെറ്റിങ്‌സ്", price: 20 },
   { name: "കുഷ്യൻ ചെയർ", price: 50 },
   { 
-    name: "ടേബിൾ",  // Item with variants
+    name: "ടേബിൾ",
     variants: [
       { name: "ടേബിൾ", price: 25 },
       { name: "ടേബിൾ (വൺ സൈഡ്)", price: 35 }
@@ -26,18 +26,18 @@ const allItems = [
   { name: "കൊട്ട", price: 50 },
   { name: "ഷവ്വൽ", price: 50 },
   { 
-    name: "ഉരുളി",  // Item with variants
+    name: "ഉരുളി",
     variants: [
       { name: "ഉരുളി (S)", price: 150 },
       { name: "ഉരുളി (M)", price: 200 },
-	  { name: "ഉരുളി (VC)", price: 250 },
+      { name: "ഉരുളി (VC)", price: 250 },
       { name: "ഉരുളി (B)", price: 500 }
     ]
   },
   { name: "അടുപ്പ്", price: 50 },
   { name: "എണ്ണ കോരി", price: 25 },
   { 
-    name: "ഗ്യാസ് അടുപ്പ്",  // Item with variants
+    name: "ഗ്യാസ് അടുപ്പ്",
     variants: [
       { name: "ഗ്യാസ് അടുപ്പ് (I)", price: 150 },
       { name: "ഗ്യാസ് അടുപ്പ് (II)", price: 200 },
@@ -46,14 +46,14 @@ const allItems = [
   },
   { name: "വാഷ് ബെയ്‌സിൻ", price: 350 },
   { 
-    name: "ട്രമ്മ്",  // Item with variants
+    name: "ട്രമ്മ്",
     variants: [
       { name: "ട്രമ്മ് (S)", price: 100 },
       { name: "ട്രമ്മ് (B)", price: 200 }
     ]
   },
   { 
-    name: "സ്റ്റാൻഡ്",  // Item with variants
+    name: "സ്റ്റാൻഡ്",
     variants: [
       { name: "സ്റ്റാൻഡ് (S)", price: 15 },
       { name: "സ്റ്റാൻഡ്(B)", price: 50 }
@@ -95,7 +95,7 @@ const uruliInput = document.getElementById('uruli');
 let invoiceItems = [];
 let selectedVariantPrice = null;
 
-// Populate dropdown with all items
+// Populate dropdown
 function populateItemDropdown() {
   itemSelect.innerHTML = '';
   const placeholder = document.createElement('option');
@@ -114,7 +114,7 @@ function populateItemDropdown() {
 }
 populateItemDropdown();
 
-// Show variant dropdown if selected item has variants
+// Variant dropdown
 itemSelect.addEventListener('change', () => {
   const selectedMain = itemSelect.value;
   variantWrapper.innerHTML = '';
@@ -128,8 +128,8 @@ itemSelect.addEventListener('change', () => {
     variantSelect.innerHTML = '<option value="" disabled selected>Select Variant</option>';
     item.variants.forEach(v => {
       const opt = document.createElement('option');
-      opt.value = v.price;   // store price
-      opt.textContent = v.name; // only show name
+      opt.value = v.price;
+      opt.textContent = v.name;
       variantSelect.appendChild(opt);
     });
     variantWrapper.appendChild(variantSelect);
@@ -140,7 +140,7 @@ itemSelect.addEventListener('change', () => {
   }
 });
 
-// Add item to invoice
+// Add item
 function addItem() {
   const name = itemSelect.value;
   const qty = parseInt(qtyInput.value) || 0;
@@ -192,10 +192,9 @@ function addCharge(label, input) {
 function addExtra1() { addCharge("പന്തൽ", extra1Input); }
 function addExtra2() { addCharge("കാർപെറ്റ്", extra2Input); }
 function addExtra3() { addCharge("Ceiling & Decoration", extra3Input); }
-function addUruli() { addCharge("ഉരുളി", uruliInput); }
 function addTransport() { addCharge("Loading & Transportation", transportInput); }
 
-// Remove / clear items
+// Remove / clear
 function removeItem(index) { invoiceItems.splice(index, 1); renderInvoice(); }
 function clearAll() {
   if (confirm("Are you sure you want to clear all items?")) {
@@ -212,7 +211,7 @@ function clearAll() {
   }
 }
 
-// Render invoice table
+// Render table
 function renderInvoice() {
   tbody.innerHTML = '';
   let grand = 0;
@@ -225,7 +224,7 @@ function renderInvoice() {
   grandEl.textContent = grand.toFixed(2);
 }
 
-// Print invoice
+// ✅ Updated printInvoice with bigger Grand Total
 function printInvoice() {
   if (invoiceItems.length === 0) { alert('No items to print'); return; }
   const sortedItems = [...invoiceItems];
@@ -243,8 +242,22 @@ function printInvoice() {
     th,td{border:1px solid #ddd;padding:8px;text-align:center;font-weight:bold;}
     th{background-color:#f2f2f2;}
     tr.item-row td{border-bottom:1px dashed #aaa;}
-    .total{margin-top:15px; text-align:right; font-weight:bold; font-size:16px; border-top:2px solid #333; padding-top:5px;}
-    @media print{body{margin:0;} .header h1{font-size:26px;} th,td{font-size:12px; padding:6px;} }
+    /* 🔹 Bigger, Bolder Grand Total */
+	.total{
+		margin-top:20px;
+		text-align:right;
+		font-weight:700; /* slightly bold, not too heavy */
+		font-size:24px;  /* a bit smaller but still clear */
+		border-top:2px solid #333;
+		padding-top:8px;
+		color:#000;
+		}
+
+    @media print{
+      body{margin:0;}
+      .header h1{font-size:26px;}
+      th,td{font-size:12px; padding:6px;}
+    }
     </style></head><body>
     
     <div class="header">
@@ -278,4 +291,3 @@ function printInvoice() {
 }
 
 renderInvoice();
-
