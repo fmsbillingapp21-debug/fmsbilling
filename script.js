@@ -35,7 +35,7 @@ const allItems = [
     ]
   },
   { name: "അടുപ്പ്", price: 50 },
-  { name: "കോരി", price: 25 },
+  { name: "എണ്ണ കോരി", price: 25 },
   { 
     name: "ഗ്യാസ് അടുപ്പ്",  // Item with variants
     variants: [
@@ -70,7 +70,7 @@ const allItems = [
   { name: "വലിയ കൈൽ", price: 10 },
   { name: "തൊലുങ്ക്", price: 50 },
   { name: "ഷാൻ", price: 10 },
-  { name: "കോരി", price: 1 },
+  { name: "കോരി", price: 2 },
   { name: "കറിബോൾ", price: 5 },
   { name: "കൈൽ", price: 2 },
   { name: "ബക്കറ്റ് /കൈൽ", price: 35 },
@@ -278,3 +278,4 @@ function printInvoice() {
 }
 
 renderInvoice();
+
