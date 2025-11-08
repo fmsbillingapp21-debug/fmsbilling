@@ -1,3 +1,4 @@
+
 // Combined array: normal items + items with variants
 const allItems = [
   { 
@@ -77,7 +78,9 @@ const allItems = [
   { name: "തൂക്കി", price: 30 },
   { name: "ജഗ്ഗ്", price: 10 },
   { name: "അരപ്ലേറ്റ്", price: 3 },
-  { name: "അരകോരി", price: 2 }
+  { name: "അരകോരി", price: 2 },
+  { name: "സെറാമിക് പ്ലേറ്റ്", price: 4 },
+  { name: "പുഡ്ഡിംഗ് ട്രേ", price: 25 }
 ];
 
 const itemSelect = document.getElementById('item');
@@ -193,6 +196,32 @@ function addExtra1() { addCharge("പന്തൽ", extra1Input); }
 function addExtra2() { addCharge("കാർപെറ്റ്", extra2Input); }
 function addExtra3() { addCharge("Ceiling & Decoration", extra3Input); }
 function addTransport() { addCharge("Loading & Transportation", transportInput); }
+// Custom extra charge fields (user-defined name + amount)
+function addCustomExtra(num) {
+  const nameInput = document.getElementById(`customName${num}`);
+  const amountInput = document.getElementById(`customAmount${num}`);
+  const name = nameInput.value.trim();
+  const amount = parseFloat(amountInput.value);
+
+  if (!name || isNaN(amount) || amount <= 0) {
+    alert("Please enter a valid name and amount.");
+    return;
+  }
+
+  const existing = invoiceItems.find(i => i.name === name);
+  if (existing) {
+    existing.total = amount;
+    existing.price = amount;
+    existing.quantity = "-";
+  } else {
+    invoiceItems.push({ name: name, price: amount, quantity: "-", total: amount });
+  }
+
+  nameInput.value = "";
+  amountInput.value = "";
+  renderInvoice();
+}
+
 
 // Remove / clear
 function removeItem(index) { invoiceItems.splice(index, 1); renderInvoice(); }
@@ -253,11 +282,37 @@ function printInvoice() {
 		color:#000;
 		}
 
-    @media print{
-      body{margin:0;}
-      .header h1{font-size:26px;}
-      th,td{font-size:12px; padding:6px;}
-    }
+@media print {
+  body { margin: 0; }
+
+  .header h1 {
+    font-size: 24px; /* Slightly smaller than before */
+  }
+
+  th {
+    font-size: 16px;
+    padding: 8px;
+  }
+
+  td {
+    font-size: 16px; /* Normal readable size for numbers */
+    padding: 8px;
+  }
+
+  /* Make only item names a little bigger */
+  td:first-child {
+    font-size: 15px;
+    font-weight: 800;
+  }
+
+  /* Grand total slightly larger and bold */
+  .total {
+    font-size: 20px;
+    font-weight: bold;
+  }
+}
+
+
     </style></head><body>
     
     <div class="header">
