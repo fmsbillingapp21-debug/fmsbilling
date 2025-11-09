@@ -116,68 +116,23 @@ td { font-weight:bold; }
     </div>
   </div>
   
- <!-- Custom Extra Charges Section -->
-<h3 style="margin-top:20px; color:#004085; text-align:center;">Additional Custom Charges</h3>
+ <h3 style="margin-top:15px; color:#004085;">Additional Items</h3>
 
-<!-- Custom Extra 1 -->
-<label style="margin-top:10px; font-weight:bold;">Custom Extra 1:</label>
 <div class="row">
-  <div style="flex:2; display:flex; gap:8px;">
-    <input type="text" id="customName1" placeholder="Enter Name (e.g. Stage)" style="flex:1;">
-    <input type="number" id="customAmount1" min="0" placeholder="Enter Amount" style="flex:1;">
+  <div style="flex:2">
+    <label for="customName">Item Name:</label>
+    <input type="text" id="customName" placeholder="Enter Item Name">
   </div>
-  <div style="flex:1; align-self:end;">
-    <button onclick="addCustomExtra(1)">Add Amount</button>
+  <div style="flex:1">
+    <label for="customAmount">Amount:</label>
+    <input type="number" id="customAmount" min="0" placeholder="Enter Amount">
   </div>
 </div>
 
-<!-- Custom Extra 2 -->
-<label style="margin-top:10px; font-weight:bold;">Custom Extra 2:</label>
 <div class="row">
-  <div style="flex:2; display:flex; gap:8px;">
-    <input type="text" id="customName2" placeholder="Enter Name (e.g. Decoration)" style="flex:1;">
-    <input type="number" id="customAmount2" min="0" placeholder="Enter Amount" style="flex:1;">
-  </div>
-  <div style="flex:1; align-self:end;">
-    <button onclick="addCustomExtra(2)">Add Amount</button>
-  </div>
+  <button onclick="addCustomItem()">Add Amount</button>
 </div>
 
-<!-- Custom Extra 3 -->
-<label style="margin-top:10px; font-weight:bold;">Custom Extra 3:</label>
-<div class="row">
-  <div style="flex:2; display:flex; gap:8px;">
-    <input type="text" id="customName3" placeholder="Enter Name (e.g. Flowers)" style="flex:1;">
-    <input type="number" id="customAmount3" min="0" placeholder="Enter Amount" style="flex:1;">
-  </div>
-  <div style="flex:1; align-self:end;">
-    <button onclick="addCustomExtra(3)">Add Amount</button>
-  </div>
-</div>
-
-<!-- Custom Extra 4 -->
-<label style="margin-top:10px; font-weight:bold;">Custom Extra 4:</label>
-<div class="row">
-  <div style="flex:2; display:flex; gap:8px;">
-    <input type="text" id="customName4" placeholder="Enter Name (e.g. Sound System)" style="flex:1;">
-    <input type="number" id="customAmount4" min="0" placeholder="Enter Amount" style="flex:1;">
-  </div>
-  <div style="flex:1; align-self:end;">
-    <button onclick="addCustomExtra(4)">Add Amount</button>
-  </div>
-</div>
-
-<!-- Custom Extra 5 -->
-<label style="margin-top:10px; font-weight:bold;">Custom Extra 5:</label>
-<div class="row">
-  <div style="flex:2; display:flex; gap:8px;">
-    <input type="text" id="customName5" placeholder="Enter Name (e.g. Generator)" style="flex:1;">
-    <input type="number" id="customAmount5" min="0" placeholder="Enter Amount" style="flex:1;">
-  </div>
-  <div style="flex:1; align-self:end;">
-    <button onclick="addCustomExtra(5)">Add Amount</button>
-  </div>
-</div>
 
   <div class="table-wrapper">
     <table id="invoiceTable">
