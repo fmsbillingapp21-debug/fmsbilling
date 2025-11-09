@@ -345,4 +345,25 @@ function printInvoice() {
   w.print();
 }
 
+// ✅ Add custom item (user-defined name + amount)
+function addCustomItem() {
+  const nameInput = document.getElementById('customName');
+  const amountInput = document.getElementById('customAmount');
+  const name = nameInput.value.trim();
+  const amount = parseFloat(amountInput.value);
+
+  if (!name || isNaN(amount) || amount <= 0) {
+    alert("Please enter a valid item name and amount.");
+    return;
+  }
+
+  // Add to invoice
+  addCharge(name, { value: amount });
+
+  // Reset inputs
+  nameInput.value = "";
+  amountInput.value = "";
+}
+
+
 renderInvoice();
